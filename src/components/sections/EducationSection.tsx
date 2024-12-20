@@ -1,15 +1,17 @@
 import React from 'react';
-import { sectionContent } from '../../utils/sectionContent';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { translations } from '../../utils/translations';
 
 const EducationSection = () => {
-  const { content } = sectionContent.education;
+  const { language } = useLanguage();
+  const { degrees } = translations[language].education;
   
   return (
-    <div className="max-w-4xl space-y-6 px-4 md:px-8">
-      {content.degrees.map((education, index) => (
+    <div className="max-w-4xl space-y-6 px-8 md:px-8">
+      {degrees.map((education, index) => (
         <div 
           key={index}
-          className="bg-white/10 backdrop-blur-sm rounded-lg p-4 md:p-8"
+          className="bg-white/10 backdrop-blur-sm rounded-lg p-6 md:p-8"
         >
           <h3 className="text-xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-3">{education.degree}</h3>
           <p className="text-lg md:text-2xl lg:text-3xl mb-1 md:mb-2">{education.school}</p>
