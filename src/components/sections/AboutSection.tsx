@@ -2,6 +2,7 @@ import React from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../utils/translations';
 
+
 const AboutSection = () => {
   const { language } = useLanguage();
   const { content } = translations[language].about;
