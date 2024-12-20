@@ -11,7 +11,7 @@ const AboutSection = () => {
       <div className="mb-12 relative">
         <div className="w-56 h-56 md:w-64 md:h-64 mx-auto rounded-full overflow-hidden ring-4 ring-white/20 shadow-2xl">
           <img
-            src="../../../data/about.jpg"
+            src="https://github.com/VincentPiumi/cv/blob/master/data/about.jpg"
             alt="Profile"
             className="w-full h-full object-cover"
           />
