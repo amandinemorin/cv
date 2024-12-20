@@ -11,8 +11,8 @@ const LanguageSwitch = () => {
     >
       <img
         src={language === 'fr' 
-          ? "https://github.com/VincentPiumi/cv/blob/master/data/uk.png"  // UK flag
-          : "https://github.com/VincentPiumi/cv/blob/master/data/france.png"   // French flag
+          ? "/cv/data/uk.png"  // UK flag
+          : "/cv/data/france.png"   // French flag
         }
         alt={language === 'fr' ? "Switch to English" : "Passer en français"}
         className="w-full h-full object-cover"
