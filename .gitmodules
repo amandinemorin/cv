@@ -4,3 +4,6 @@
 [submodule "node_modules/.cache/gh-pages/git@github.com!VincentPiumi!cv.git"]
 	path = node_modules/.cache/gh-pages/git@github.com!VincentPiumi!cv.git
 	url = https://vincentpiumi.github.io/cv/
+[submodule "node_modules/.cache/gh-pages/git@github.com!amandinemorin!cv.git"]
+	path = node_modules/.cache/gh-pages/git@github.com!amandinemorin!cv.git
+	url = https://github.com/amandinemorin/cv/
