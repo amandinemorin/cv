@@ -16,6 +16,9 @@ const sections = [
   { id: 'experience1' },
   { id: 'experience2' },
   { id: 'experience3' },
+  { id: 'experience4' },
+  { id: 'experience5' },
+  { id: 'experience6' },
   { id: 'skills' },
   { id: 'contact' }
 ];
@@ -59,13 +62,18 @@ function App() {
     return t[id].title;
   };
 
+  const getSectionCompanies = () => {
+    return t.experience.companies;
+  };
+
   const sectionsWithTitles = sections.map(({ id }) => ({
     id,
     title: getSectionTitle(id),
+    companies: getSectionCompanies()
   }));
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="flex min-h-screen bg-gradient-to-br from-violet-300 via-neutral-400 to-violet-300">
       <Navigation sections={sectionsWithTitles} activeSection={activeSection} />
       <LanguageSwitch />
       <main 
@@ -76,7 +84,7 @@ function App() {
           <Section key={id} id={id}>
             {id === 'about' && <AboutSection />}
             {id === 'education' && <EducationSection />}
-            {id.startsWith('experience') && <ExperienceSection id={id as 'experience1' | 'experience2' | 'experience3'} />}
+            {id.startsWith('experience') && <ExperienceSection id={id as 'experience1' | 'experience2' | 'experience3' | 'experience4' | 'experience5' | 'experience6'} />}
             {id === 'skills' && <SkillsSection />}
             {id === 'contact' && <ContactSection />}
           </Section>

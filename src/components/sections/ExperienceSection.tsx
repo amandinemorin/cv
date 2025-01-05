@@ -3,7 +3,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../utils/translations';
 
 interface ExperienceProps {
-  id: 'experience1' | 'experience2' | 'experience3';
+  id: 'experience1' | 'experience2' | 'experience3' | 'experience4' | 'experience5' | 'experience6';
 }
 
 const ExperienceSection: React.FC<ExperienceProps> = ({ id }) => {

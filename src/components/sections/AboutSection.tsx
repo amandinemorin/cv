@@ -17,9 +17,9 @@ const AboutSection = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-500/20 to-transparent"></div>
+        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-violet-900/10 to-transparent"></div>
       </div>
-      <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">Alexander Mitchell</h2>
+      <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">Amandine Morin</h2>
       <p className="text-lg md:text-xl lg:text-2xl leading-relaxed text-justify">{content}</p>
     </div>
   );

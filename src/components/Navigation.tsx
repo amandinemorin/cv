@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import NavigationItem from './navigation/NavigationItem';
+import ExperienceSubmenu from './navigation/ExperienceSubmenu';
 
 interface NavigationProps {
   sections: {
     id: string;
     title: string;
+    companies: Map;
   }[];
   activeSection: string;
 }
 
 const Navigation: React.FC<NavigationProps> = ({ sections, activeSection }) => {
+  const [isExperienceExpanded, setIsExperienceExpanded] = useState(false);
+  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -16,45 +21,56 @@ const Navigation: React.FC<NavigationProps> = ({ sections, activeSection }) => {
     }
   };
 
+  const isExperienceSection = (id: string) => id.startsWith('experience');
+  const isInExperienceSection = isExperienceSection(activeSection);
+
+  // Update expansion state based on active section
+  useEffect(() => {
+    setIsExperienceExpanded(isInExperienceSection);
+  }, [isInExperienceSection]);
+
+  const experienceSections = sections.filter(({ id }) => isExperienceSection(id));
+  
+  const renderNavigationItem = (section: { id: string, title: string }) => {
+    const { id, title } = section;
+    if (isExperienceSection(id)) return null;
+
+    return (
+      <NavigationItem
+        key={id}
+        id={id}
+        title={title}
+        isActive={activeSection === id}
+        onClick={() => scrollToSection(id)}
+      />
+    );
+  };
+
   return (
     <>
       {/* Desktop Navigation */}
       <nav className="fixed left-0 top-0 h-screen w-72 hidden md:flex items-center backdrop-blur-sm bg-white/5">
         <div className="w-full space-y-2">
-          {sections.map(({ id, title }) => {
-            const isActive = activeSection === id;
-            return (
-              <button
-                key={id}
-                onClick={() => scrollToSection(id)}
-                className={`w-full flex items-center group transition-all duration-500 ${
-                  isActive ? 'py-4' : 'py-3'
-                }`}
-              >
-                <div
-                  className={`flex items-center transition-all duration-500 ${
-                    isActive
-                      ? 'bg-white/10 w-full py-3 px-6'
-                      : 'hover:bg-white/5 px-4 py-2'
-                  } rounded-lg`}
-                >
-                  <div 
-                    className={`w-3 h-3 rounded-full border-2 border-white mr-3 transition-all duration-500 ${
-                      isActive ? 'bg-white' : 'bg-transparent'
-                    }`}
+          {sections.map((section, index) => {
+            if (index === 2) {
+              return (
+                <React.Fragment key="experience-section">
+                  <ExperienceSubmenu
+                    isExpanded={isExperienceExpanded}
+                    onToggle={() => setIsExperienceExpanded(!isExperienceExpanded)}
+                    isActive={isInExperienceSection}
+                    activeSection={activeSection}
+                    experienceSections={experienceSections}
+                    onSectionClick={scrollToSection}
                   />
-                  <span
-                    className={`transition-all duration-500 ${
-                      isActive
-                        ? 'text-lg font-semibold'
-                        : 'text-sm text-white/60 group-hover:text-white/90'
-                    }`}
-                  >
-                    {title}
-                  </span>
-                </div>
-              </button>
-            );
+                  {renderNavigationItem(section)}
+                </React.Fragment>
+              );
+            }
+            if (!isExperienceSection(section.id)) {
+              return renderNavigationItem(section);
+            }
+            return null;
           })}
         </div>
       </nav>
